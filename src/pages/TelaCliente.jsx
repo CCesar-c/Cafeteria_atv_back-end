@@ -14,9 +14,28 @@ export default function TelaCliente() {
         setClientes(repons.data)
         console.log(repons.data)
     }
+    const deletar_cliente = async (id) => {
+        console.log(nome + "\n" + email)
+        const repons = await axios.delete('http://localhost:3000/clientes', {
+            id
+        }).then((repons) => {
+            console.log(repons.data)
+        })
+    }
     const enviar_cliente = async () => {
         console.log(nome + "\n" + email)
         const repons = await axios.post('http://localhost:3000/clientes', {
+            nome,
+            email
+        }).then((repons) => {
+            console.log(repons.data)
+        })
+    }
+
+    const atualizar_cliente = async (id) => {
+        console.log(nome + "\n" + email)
+        const repons = await axios.put('http://localhost:3000/clientes', {
+            id,
             nome,
             email
         }).then((repons) => {
@@ -41,14 +60,28 @@ export default function TelaCliente() {
             </div>
             {clientes && clientes.map((cli) => (
                 <div className='li' key={cli.id}>
-                    <input type="text" disabled={edicionID == cli.id ? status : true} placeholder={`Nome: ${cli.nome}`} />
-                    <input type="text" disabled={edicionID == cli.id ? status : true} placeholder={`Email: ${cli.email}`} />
+                    <input type="text" disabled={edicionID == cli.id ? status : true} placeholder={`Nome: ${cli.nome}`} onChange={(t) => setNome(t.target.value)} />
+                    <input type="text" disabled={edicionID == cli.id ? status : true} placeholder={`Email: ${cli.email}`} onChange={(t) => setEmail(t.target.value)} />
                     <button>excluir</button>
-                    <button onClick={() => {
+                    <button disabled={edicionID == cli.id ? true : false} onClick={() => {
                         setStatus(!status)
                         setEdicionID(cli.id)
+                        deletar_cliente(cli.id)
                     }
-                    }> editar</button> </div>
+
+                    }> editar</button>
+                    <button disabled={edicionID == cli.id ? false : true} onClick={() => {
+                        try {
+                            atualizar_cliente(cli.id)
+                            setStatus(!status)
+                            setEdicionID(cli.id)
+                            alert("Altelazao exutada")
+                        } catch (error) {
+                            console.error(error)
+                        }
+                    }
+                    }> Aceitar Mudanças</button>
+                </div>
             ))}
         </div >
     )
