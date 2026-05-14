@@ -44,9 +44,10 @@ export default function TelaCliente() {
                     <input type="text" disabled={edicionID == cli.id ? status : true} placeholder={`Nome: ${cli.nome}`} />
                     <input type="text" disabled={edicionID == cli.id ? status : true} placeholder={`Email: ${cli.email}`} />
                     <button>excluir</button>
-                    <button onClick={() =>
-                        {setStatus(!status)
-                        setEdicionID(cli.id)}
+                    <button onClick={() => {
+                        setStatus(!status)
+                        setEdicionID(cli.id)
+                    }
                     }> editar</button> </div>
             ))}
         </div >
