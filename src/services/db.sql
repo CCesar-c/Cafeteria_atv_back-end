@@ -1,15 +1,20 @@
--- CREATE TABLE clientes (
---   id SERIAL PRIMARY KEY,
---   nome VARCHAR(255) NOT NULL,
---   email VARCHAR(255) UNIQUE NOT NULL
--- );
--- CREATE TYPE TYPOS AS  ENUM ('pendente', 'preparando', 'enviado', 'recebido');
--- CREATE TABLE pedidos (
---   id SERIAL PRIMARY KEY,
---   produto VARCHAR(255) NOT NULL,
---   valor NUMERIC(10,2) NOT NULL,
---   status TYPOS  DEFAULT 'pendente',
---   -- status ENUM ('pendente', 'preparando', 'enviado', 'recebido')  DEFAULT 'pendente',
---   cliente_id INTEGER REFERENCES clientes(id)
--- );
+CREATE TABLE clientes (
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL
+);
+
+CREATE TYPE TYPOS AS  ENUM ('pendente', 'preparando', 'enviado', 'recebido');
+
+CREATE TABLE pedidos (
+  id SERIAL PRIMARY KEY,
+  produto VARCHAR(255) NOT NULL,
+  valor NUMERIC(10,2) NOT NULL,
+  status TYPOS  DEFAULT 'pendente',
+  -- status ENUM ('pendente', 'preparando', 'enviado', 'recebido')  DEFAULT 'pendente',
+  cliente_id INTEGER REFERENCES clientes(id)
+);
 -- drop table pedidos
+
+insert into clientes values (DEFAULT, "Cesar", "Cesar@gmail.com")
+insert into pedidos values (DEFAULT, 'milho', 3, 'pendente', 1);

@@ -30,13 +30,20 @@ app.put("/clientes", async (req, res) => {
 
 app.delete("/clientes", async (req, res) => {
     const { id } = req.body
-    const repons = await configuracao.query('drop column from clientes where id = $1 returning *', [id])
+    console.log(id)
+    const repons = await configuracao.query('delete from clientes where id = $1 returning *', [id])
     res.json(repons.rows);
 })
 
 // pedidos
 app.get('/pedidos', async (req, res) => {
     const response = await configuracao.query("select * from pedidos")
+    res.json(response.rows)
+})
+
+app.get('/pedidos_especifico', async (req, res) => {
+    const { status } = req.body
+    const response = await configuracao.query("select * from pedidos where status = $1", [status])
     res.json(response.rows)
 })
 
@@ -51,11 +58,7 @@ app.put('/pedidos', async (req, res) => {
     const response = await configuracao.query('update pedidos set status = $1 where id = $3 returning *', [status, id])
     res.json(response.rows)
 })
-app.get('/pedidos_especifico', async (req, res) => {
-    const { status } = req.body
-    const response = await configuracao.query("select * from pedidos where status = $1", [status])
-    res.json(response.rows)
-})
+
 
 
 
