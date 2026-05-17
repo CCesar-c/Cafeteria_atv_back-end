@@ -19,7 +19,7 @@ export default function TelaCliente() {
     const deletar_cliente = async (id) => {
         console.log(id)
         const repons = await axios.delete('http://localhost:3000/clientes', {
-            data:{id:id}
+             data: { id: id }
         }).then((repons) => {
             console.log(repons.data)
         })
@@ -60,7 +60,7 @@ export default function TelaCliente() {
         <div>
             <h1>Tela do Cliente</h1>
             <Cabecalho />
-            <div>
+            <div className='li' >
                 <input type="text" placeholder={`Nome`} onChange={(t) => setNome(t.target.value)} />
                 <input type="text" placeholder={`Email`} onChange={(t) => setEmail(t.target.value)} />
                 <button onClick={() =>

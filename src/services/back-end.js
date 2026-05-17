@@ -37,14 +37,15 @@ app.delete("/clientes", async (req, res) => {
 
 // pedidos
 app.get('/pedidos', async (req, res) => {
-    const response = await configuracao.query("select * from pedidos")
+    const response = await configuracao.query("select * from pedidos order by id desc")
     res.json(response.rows)
 })
 
-app.get('/pedidos_especifico', async (req, res) => {
-    const { status } = req.body
+app.get('/pedidos_especifico/:status', async (req, res) => {
+    const { status } = req.params
+    console.log(status);
     const response = await configuracao.query("select * from pedidos where status = $1", [status])
-    res.json(response.rows)
+    res.json(response.rows || [])
 })
 
 app.post('/pedidos', async (req, res) => {
@@ -54,14 +55,17 @@ app.post('/pedidos', async (req, res) => {
 })
 
 app.put('/pedidos', async (req, res) => {
+    // /pedidos/:id/:status
+    // const { id, status } = req.params
     const { id, status } = req.body
-    const response = await configuracao.query('update pedidos set status = $1 where id = $3 returning *', [status, id])
+    const response = await configuracao.query('update pedidos set status = $1 where id = $2 returning *', [status, id])
+    res.send(`update pedidos set status = ${status} where id = ${id} returning *`)
     res.json(response.rows)
 })
 
 
 
 
-app.listen(3000, () =>{
+app.listen(3000, () => {
     console.log("http://localhost:3000/")
 })

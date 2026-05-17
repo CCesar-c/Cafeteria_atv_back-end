@@ -1,8 +1,17 @@
 body {
+    background:linear-gradient(90deg, rgba(74, 206, 140, 0.719), rgba(50, 224, 255, 0.438)) ;
     height: "90vh";
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+input {
+    height: 30px;
+    width: 180px;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: rgba(240, 248, 255, 0.5);
 }
 
 h1 {
@@ -10,6 +19,7 @@ h1 {
 }
 
 button {
+    background-color: rgba(240, 248, 255, 0.5);
     border-radius: 10px;
     margin: 10px;
     height: 40px;
@@ -19,14 +29,20 @@ button {
     border-radius: 10px;
     margin: 10px;
     padding: 10px;
-    background-color: rgb(181, 182, 182);
+    background-color: rgba(231, 220, 220, 0.664);
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
 .li {
+    
     padding: 1px;
     border-radius: 10px;
-    background-color: rgb(185, 185, 185);
+    background-color: rgba(231, 220, 220, 0.664);
+    margin: 10px;
+    gap: 10px;
+    border: width 1px;
+    box-sizing: 10px;
+    border-color:black;
 }
