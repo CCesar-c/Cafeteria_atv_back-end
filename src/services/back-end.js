@@ -63,9 +63,6 @@ app.put('/pedidos', async (req, res) => {
     res.json(response.rows)
 })
 
-
-
-
 app.listen(3000, () => {
     console.log("http://localhost:3000/")
 })

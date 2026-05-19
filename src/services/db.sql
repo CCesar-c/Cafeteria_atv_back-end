@@ -16,5 +16,5 @@ CREATE TABLE pedidos (
 );
 -- drop table pedidos
 
-insert into clientes values (DEFAULT, "Cesar", "Cesar@gmail.com")
+insert into clientes values (DEFAULT, 'Cesar', 'Cesar@gmail.com');
 insert into pedidos values (DEFAULT, 'milho', 3, 'pendente', 1);
