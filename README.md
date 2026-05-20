@@ -17,3 +17,8 @@ If you are developing a production application, we recommend using TypeScript wi
 
 git config --global user.name "Nome"
 git config --global user.email "email@gmail.com" 
+pkg install gh-cli
+<!--logar en gh-cli-->
+gh auth login
+<!--esto hace que puedas iniciar cuenta despues de logar en gh-cli-->
+git auth setup-git 
